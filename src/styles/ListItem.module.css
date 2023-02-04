@@ -1,0 +1,5 @@
+.listItem {
+  color: var(--primary);
+  text-transform: capitalize;
+  font-size: 18px;
+}

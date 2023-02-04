@@ -1,0 +1,21 @@
+.post {
+  height: 500px;
+}
+
+.post .image_container {
+  position: relative;
+  height: 90%;
+  width: 100%;
+}
+
+.post .post_image {
+  object-fit: cover;
+}
+
+.post .post_title {
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--primary);
+  padding: 5px;
+  height: 10%;
+}

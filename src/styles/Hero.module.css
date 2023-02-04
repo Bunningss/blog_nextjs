@@ -1,0 +1,9 @@
+.hero {
+  position: relative;
+  height: calc(100vh - 90px);
+  width: 100%;
+}
+
+.hero .hero_image {
+  object-fit: cover;
+}
