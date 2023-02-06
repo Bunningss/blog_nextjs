@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Roboto:wght@700;900&display=swap");
 
 :root {
   --primary: #081f2c;
   --secondary: grey;
-  --background: #faf5ff;
+  --body-bg: #f4f5ff;
+  --content-bg: #ffffff;
 }
 
 * {
@@ -14,7 +15,7 @@
 }
 
 body {
-  background-color: var(--background);
+  background-color: var(--body-bg);
 }
 
 ul,
@@ -32,10 +33,19 @@ a {
 
 .text_regular {
   font-size: 18px;
-  color: inherit;
+  color: var(--primary);
 }
 
 .header {
   font-size: 34px;
-  color: inherit;
+  color: var(--primary);
+}
+
+.input {
+  padding: 12px 5px;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  font-size: 18px;
 }

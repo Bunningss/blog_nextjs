@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../public/Images/icons/arrow.png";
 import Post from "./Post";
+import { newPosts } from "static";
 
 const Featured = () => {
   return (
@@ -24,10 +25,9 @@ const Featured = () => {
         </div>
       </div>
       <div className={styles.posts}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {newPosts.map((post, indx) => (
+          <Post key={indx} post={post} />
+        ))}
       </div>
     </div>
   );

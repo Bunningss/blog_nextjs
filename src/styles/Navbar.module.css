@@ -18,7 +18,7 @@
 .navbar .wrapper .col .list {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .navbar .wrapper .col .nav_logo_wrapper {

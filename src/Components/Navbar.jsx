@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className={styles.navbar}>
+    <nav className={`default ${styles.navbar}`}>
       <div className={styles.wrapper}>
         <div className={styles.col}>
           <ul className={styles.list}>
