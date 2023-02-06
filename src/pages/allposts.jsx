@@ -46,7 +46,9 @@ const allposts = () => {
                 >
                   <option value="">Select category</option>
                   {categories.map((category, indx) => (
-                    <option value={category.value}>{category.name}</option>
+                    <option key={indx} value={category.value}>
+                      {category.name}
+                    </option>
                   ))}
                 </select>
               </div>
