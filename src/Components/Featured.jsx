@@ -18,7 +18,10 @@ const Featured = () => {
           <h2 className={`header ${styles.featured_header}`}>featured posts</h2>
         </div>
         <div className={styles.col}>
-          <Link href="" className={`text_regular ${styles.featured_text}`}>
+          <Link
+            href="/allposts"
+            className={`text_regular ${styles.featured_text}`}
+          >
             show me everything
             <Image src={arrow} alt="" className={styles.featured_icon} />
           </Link>
