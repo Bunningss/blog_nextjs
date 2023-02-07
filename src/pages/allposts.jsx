@@ -18,39 +18,41 @@ const allposts = () => {
           <div className={styles.col}>
             <div className={styles.filter}>
               <h2 className={`header ${styles.filter_header}`}>Filter posts</h2>
-              <div className={styles.group}>
-                <label
-                  htmlFor="search"
-                  className={`text_regular ${styles.filter_text}`}
-                >
-                  Search post
-                </label>
-                <input
-                  type="text"
-                  className={`input ${styles.filter_input}`}
-                  placeholder="Search Post"
-                  name="search"
-                />
-              </div>
-              <div className={styles.group}>
-                <label
-                  htmlFor="category"
-                  className={`text_regular ${styles.filter_text}`}
-                >
-                  filter by category
-                </label>
-                <select
-                  name="category"
-                  id="category"
-                  className={`input ${styles.filter_input}`}
-                >
-                  <option value="">Select category</option>
-                  {categories.map((category, indx) => (
-                    <option key={indx} value={category.value}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
+              <div className={styles.filter_content}>
+                <div className={styles.group}>
+                  <label
+                    htmlFor="search"
+                    className={`text_regular ${styles.filter_text}`}
+                  >
+                    Search post
+                  </label>
+                  <input
+                    type="text"
+                    className={`input ${styles.filter_input}`}
+                    placeholder="Search Post"
+                    name="search"
+                  />
+                </div>
+                <div className={styles.group}>
+                  <label
+                    htmlFor="category"
+                    className={`text_regular ${styles.filter_text}`}
+                  >
+                    filter by category
+                  </label>
+                  <select
+                    name="category"
+                    id="category"
+                    className={`input ${styles.filter_input}`}
+                  >
+                    <option value="">Select category</option>
+                    {categories.map((category, indx) => (
+                      <option key={indx} value={category.value}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
           </div>

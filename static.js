@@ -15,11 +15,11 @@ export const colOne = [
 
 export const colTwo = [
   {
-    href: "",
+    href: "/account",
     name: "login",
   },
   {
-    href: "",
+    href: "/account",
     name: "become an author",
   },
   {
@@ -118,5 +118,9 @@ export const categories = [
   {
     name: "story",
     value: "story",
+  },
+  {
+    name: "lifestyle",
+    value: "lifestyle",
   },
 ];

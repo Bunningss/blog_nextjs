@@ -1,17 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Itim&family=Roboto:wght@700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Itim&display=swap");
 
 :root {
   --primary: #081f2c;
   --secondary: grey;
   --body-bg: #f4f5ff;
   --content-bg: #ffffff;
+  --highlight: red;
+  --font-primary: "Itim", cursive;
+  --font-secondary: "Cinzel", serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Itim", cursive;
+  font-family: var(--font-primary);
 }
 
 body {
@@ -39,12 +42,15 @@ a {
 .header {
   font-size: 34px;
   color: var(--primary);
+  font-family: var(--font-secondary);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .input {
   padding: 12px 5px;
   width: 100%;
-  border: none;
+  border: 1px solid var(--primary);
   border-radius: 3px;
   outline: none;
   font-size: 18px;
