@@ -19,7 +19,7 @@ export const colTwo = [
     name: "login",
   },
   {
-    href: "/account",
+    href: "/publish",
     name: "become an author",
   },
   {
