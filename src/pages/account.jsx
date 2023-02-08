@@ -2,6 +2,8 @@ import styles from "../styles/Account.module.css";
 import Head from "next/head";
 import FormInput from "@/Components/FormInput";
 import { useState } from "react";
+import PrimayButton from "@/Components/PrimayButton";
+import { publicRequest } from "@/lib/requestMethods";
 
 const Account = () => {
   const [loginValues, setLoginValues] = useState({
@@ -60,7 +62,7 @@ const Account = () => {
       maxLength: 80,
     },
     {
-      Name: "Password",
+      name: "Password",
       label: "Enter Your Password",
       type: "password",
       placeholder: "Enter Your Password",
@@ -75,6 +77,11 @@ const Account = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     const loginData = Object.fromEntries(data.entries());
+    try {
+      const res = await publicRequest.post("/auth/login", loginData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -93,7 +100,7 @@ const Account = () => {
               {loginInputs.map((input, indx) => (
                 <FormInput key={indx} input={input} />
               ))}
-              <button className={`input`}>Login</button>
+              <PrimayButton text={"Login"} />
             </form>
           </div>
           <div className={styles.col}>
@@ -106,7 +113,7 @@ const Account = () => {
                 <option value="">Yes</option>
                 <option value="">No</option>
               </select> */}
-              <button className={`input`}>Register</button>
+              <PrimayButton text={"Register"} />
             </form>
           </div>
         </div>
