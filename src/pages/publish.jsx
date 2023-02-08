@@ -1,7 +1,7 @@
 import styles from "../styles/Publish.module.css";
 import Head from "next/head";
 
-const publish = () => {
+const Publish = () => {
   return (
     <>
       <Head>
@@ -66,4 +66,4 @@ const publish = () => {
   );
 };
 
-export default publish;
+export default Publish;

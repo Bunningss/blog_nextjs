@@ -3,7 +3,7 @@ import Head from "next/head";
 import FormInput from "@/Components/FormInput";
 import { useState } from "react";
 
-const account = () => {
+const Account = () => {
   const [loginValues, setLoginValues] = useState({
     Email: "",
     Password: "",
@@ -115,4 +115,4 @@ const account = () => {
   );
 };
 
-export default account;
+export default Account;

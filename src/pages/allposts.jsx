@@ -3,7 +3,7 @@ import Head from "next/head";
 import Post from "@/Components/Post";
 import { categories, temPosts } from "static";
 
-const allposts = () => {
+const Allposts = () => {
   return (
     <>
       <Head>
@@ -68,4 +68,4 @@ const allposts = () => {
   );
 };
 
-export default allposts;
+export default Allposts;
