@@ -1,16 +1,17 @@
 import styles from "../styles/Account.module.css";
 import Head from "next/head";
-import FormInput from "@/Components/FormInput";
 import { useState } from "react";
-import PrimayButton from "@/Components/PrimayButton";
 import { publicRequest } from "@/lib/requestMethods";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { loginStart, loginFailure, loginSuccess } from "@/Redux/userSlice";
+import FormInput from "@/Components/FormInput";
+import PrimayButton from "@/Components/PrimayButton";
 
 const Account = () => {
-  const [loginValues, setLoginValues] = useState({
-    Email: "",
-    Password: "",
-  });
-
+  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter();
   const registerInputs = [
     {
       label: "Name",
@@ -77,10 +78,14 @@ const Account = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     const loginData = Object.fromEntries(data.entries());
+    dispatch(loginStart());
     try {
       const res = await publicRequest.post("/auth/login", loginData);
+      dispatch(loginSuccess(res.data.data));
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      dispatch(loginFailure());
+      setErrorMessage(error.response.data.data);
     }
   };
 
@@ -100,6 +105,7 @@ const Account = () => {
               {loginInputs.map((input, indx) => (
                 <FormInput key={indx} input={input} />
               ))}
+              <p className={`errorMessage`}>{errorMessage}</p>
               <PrimayButton text={"Login"} />
             </form>
           </div>
