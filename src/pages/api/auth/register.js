@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import User from "../../../Models/User";
+import crypto from "crypto-js";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -15,10 +16,14 @@ export default async function handler(req, res) {
             data: "There is an account associated with this email.",
           });
         }
+        const hashedPass = crypto.AES.encrypt(
+          Password,
+          process.env.CRYPTO_SEC
+        ).toString();
         const newUser = new User({
           Name,
           Email,
-          Password,
+          Password: hashedPass,
         });
         await newUser.save();
         res.status(200).json({ success: true, data: newUser });

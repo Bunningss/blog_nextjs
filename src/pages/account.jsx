@@ -1,20 +1,34 @@
 import styles from "../styles/Account.module.css";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { publicRequest } from "@/lib/requestMethods";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { loginStart, loginFailure, loginSuccess } from "@/Redux/userSlice";
+import {
+  loginStart,
+  loginFailure,
+  loginSuccess,
+  registerStart,
+} from "@/Redux/userSlice";
 import FormInput from "@/Components/FormInput";
 import PrimayButton from "@/Components/PrimayButton";
 
 const Account = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [registerError, setRegisterError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [values, setValues] = useState({
+    Name: "",
+    Email: "",
+    Password: "",
+    ConfirmPassword: "",
+  });
   const dispatch = useDispatch();
   const router = useRouter();
   const registerInputs = [
     {
       label: "Name",
+      name: "Name",
       type: "text",
       placeholder: "Enter Your Name",
       errorMessage: "Please enter full name",
@@ -24,6 +38,7 @@ const Account = () => {
     },
     {
       label: "Enter Email Address",
+      name: "Email",
       type: "email",
       placeholder: "Enter Your Email",
       errorMessage: "Please enter a valid email",
@@ -33,6 +48,7 @@ const Account = () => {
     },
     {
       label: "Enter Your Password",
+      name: "Password",
       type: "password",
       placeholder: "Enter Your Password",
       errorMessage: "Password must be 8+ characters",
@@ -42,12 +58,14 @@ const Account = () => {
     },
     {
       label: "Confirm Password",
+      name: "ConfirmPassword",
       type: "password",
       placeholder: "Confirm Password",
       errorMessage: "Passwords do not match",
       required: true,
       minLength: 8,
       maxLength: 256,
+      pattern: values.Password,
     },
   ];
 
@@ -74,6 +92,10 @@ const Account = () => {
     },
   ];
 
+  const handleRegisterInputs = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -86,6 +108,22 @@ const Account = () => {
     } catch (error) {
       dispatch(loginFailure());
       setErrorMessage(error.response.data.data);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (values.Password !== values.ConfirmPassword) {
+      return;
+    }
+    dispatch(registerStart());
+    try {
+      await publicRequest.post("/auth/register", values);
+      dispatch(loginSuccess());
+      setSuccessMessage("Registration successful. Please log in.");
+    } catch (error) {
+      dispatch(loginFailure());
+      setRegisterError(error.response.data.data);
     }
   };
 
@@ -111,14 +149,20 @@ const Account = () => {
           </div>
           <div className={styles.col}>
             <h2 className={`header ${styles.account_header}`}>register</h2>
-            <form action="" className={styles.account_form}>
+            <form onSubmit={handleRegister} className={styles.account_form}>
               {registerInputs.map((input, indx) => (
-                <FormInput key={indx} input={input} />
+                <FormInput
+                  key={indx}
+                  input={input}
+                  handleChange={handleRegisterInputs}
+                />
               ))}
               {/* <select name="" id="" className={`input`}>
                 <option value="">Yes</option>
                 <option value="">No</option>
               </select> */}
+              <p className={`errorMessage`}>{registerError}</p>
+              <p className={`successMessage`}>{successMessage}</p>
               <PrimayButton text={"Register"} />
             </form>
           </div>
