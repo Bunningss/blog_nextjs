@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/";
+const baseUrl = "https://theblog.herokuapp.com/api/";
 const token = "";
 
 export const publicRequest = axios.create({
