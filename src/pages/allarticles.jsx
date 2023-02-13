@@ -1,9 +1,24 @@
 import styles from "../styles/AllPosts.module.css";
 import Head from "next/head";
 import Post from "@/Components/Post";
-import { categories, temPosts } from "static";
+import { categories } from "static";
+import { useEffect, useState } from "react";
+import { publicRequest } from "@/lib/requestMethods";
 
-const Allposts = () => {
+const Allarticles = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    const getArticles = async () => {
+      try {
+        const res = await publicRequest.get("/article");
+        setArticles(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getArticles();
+  }, []);
   return (
     <>
       <Head>
@@ -58,7 +73,7 @@ const Allposts = () => {
           </div>
           {/* All Posts */}
           <div className={styles.col}>
-            {temPosts.map((post, indx) => (
+            {articles.map((post, indx) => (
               <Post key={indx} post={post} />
             ))}
           </div>
@@ -68,4 +83,4 @@ const Allposts = () => {
   );
 };
 
-export default Allposts;
+export default Allarticles;

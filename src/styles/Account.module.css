@@ -36,3 +36,17 @@
   gap: 15px;
   border-radius: 3px;
 }
+
+@media screen and (max-width: 600px) {
+  .account .wrapper {
+    display: block;
+  }
+
+  .account .wrapper .col {
+    padding: 0;
+  }
+
+  .account .wrapper .col .account_form {
+    padding: 5px;
+  }
+}

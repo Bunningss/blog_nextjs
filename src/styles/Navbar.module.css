@@ -23,6 +23,14 @@
   justify-content: space-between;
 }
 
+.navbar .wrapper .col .list a {
+  color: var(--primary);
+}
+
+.navbar .wrapper .col .list a .list_item {
+  text-transform: capitalize;
+}
+
 .navbar .wrapper .col .nav_logo_wrapper {
   position: relative;
   width: 100%;

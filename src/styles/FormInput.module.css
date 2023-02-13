@@ -2,11 +2,11 @@
   width: 100%;
 }
 
-.input_group input {
+.input_group .form_input {
   margin: 5px 0 0px 0;
 }
 
-.input_group input:invalid[focused="true"] {
+.input_group .form_input:invalid[focused="true"] {
   border: 1px solid var(--highlight);
 }
 
@@ -17,6 +17,6 @@
   color: var(--highlight);
 }
 
-.input_group input:invalid[focused="true"] ~ span {
+.input_group .form_input:invalid[focused="true"] ~ span {
   display: block;
 }

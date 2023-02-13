@@ -100,3 +100,21 @@ a {
   font-size: 16px;
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .default {
+    padding: 0 2%;
+  }
+
+  .text_regular {
+    font-size: 16px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+
+  .button {
+    font-size: 16px;
+  }
+}

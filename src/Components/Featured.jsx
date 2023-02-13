@@ -3,9 +3,23 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../public/Images/icons/arrow.png";
 import Post from "./Post";
-import { newPosts } from "static";
+import { useEffect, useState } from "react";
+import { publicRequest } from "@/lib/requestMethods";
 
 const Featured = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    const getArticles = async () => {
+      try {
+        const res = await publicRequest.get("/article");
+        setArticles(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getArticles();
+  }, []);
   return (
     <div className={styles.featured}>
       <div className={styles.heading}>
@@ -28,7 +42,7 @@ const Featured = () => {
         </div>
       </div>
       <div className={styles.posts}>
-        {newPosts.map((post, indx) => (
+        {articles.map((post, indx) => (
           <Post key={indx} post={post} />
         ))}
       </div>

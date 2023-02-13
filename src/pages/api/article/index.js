@@ -24,7 +24,7 @@ export default async function handler(req, res) {
           Image,
           Category,
           Article,
-          Author: req.user.id,
+          Author: req.user.ID,
         });
         await User.findByIdAndUpdate(
           req.user.id,

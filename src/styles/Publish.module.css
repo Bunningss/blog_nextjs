@@ -29,5 +29,11 @@
 
 .publish .wrapper .publish_form .publish_input {
   text-transform: capitalize;
-  margin: 10px 0;
+  margin: 5px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .publish .wrapper .publish_form {
+    width: 100%;
+  }
 }

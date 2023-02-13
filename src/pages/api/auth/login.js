@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import User from "../../../Models/User";
 import jwt from "jsonwebtoken";
 import crypto from "crypto-js";
+import cookie from "cookie";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -35,10 +36,20 @@ export default async function handler(req, res) {
               },
               process.env.JWT_SEC
             );
+            // Set cookie
+            res.setHeader(
+              "Set-Cookie",
+              cookie.serialize("token", authToken, {
+                httpOnly: true,
+                // #TODO: Set Secure True
+                secure: false,
+                maxAge: 60 * 60 * 24 * 7,
+                sameSite: "strict",
+                path: "/",
+              })
+            );
             const { Password, ...others } = existingUser._doc;
-            res
-              .status(200)
-              .json({ success: true, data: { others, authToken } });
+            res.status(200).json({ success: true, data: others });
           }
         }
       } catch (error) {

@@ -1,10 +1,16 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res) => {
-  const token = req.headers.token;
+  const token = req.headers.cookie?.split("=")[1];
   if (token) {
     jwt.verify(token, process.env.JWT_SEC, (err, user) => {
-      req.user = user;
+      if (err) {
+        return res
+          .status(401)
+          .json({ success: false, data: "You are not authorized" });
+      } else {
+        req.user = user;
+      }
     });
   }
 };

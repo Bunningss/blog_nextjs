@@ -2,7 +2,7 @@ import styles from "../styles/Account.module.css";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { publicRequest } from "@/lib/requestMethods";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
   loginStart,
@@ -25,6 +25,7 @@ const Account = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
+  const user = useSelector((state) => state.loggedIn);
   const registerInputs = [
     {
       label: "Name",
@@ -104,10 +105,10 @@ const Account = () => {
     try {
       const res = await publicRequest.post("/auth/login", loginData);
       dispatch(loginSuccess(res.data.data));
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       dispatch(loginFailure());
-      setErrorMessage(error.response.data.data);
+      console.log(error.response.data.data);
     }
   };
 
@@ -126,6 +127,12 @@ const Account = () => {
       setRegisterError(error.response.data.data);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
 
   return (
     <>

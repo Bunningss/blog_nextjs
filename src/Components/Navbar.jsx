@@ -1,19 +1,27 @@
 import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import logo from "@/../public/Images/logo.png";
-import { colOne, colTwo } from "static";
-import ListItem from "./ListItem";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.loggedIn);
   return (
     <nav className={`default ${styles.navbar}`}>
       <div className={styles.wrapper}>
         <div className={styles.col}>
           <ul className={styles.list}>
-            {colOne.map((item, indx) => (
-              <ListItem item={item} key={indx} />
-            ))}
+            <Link href="/allarticles">
+              <li className={`text_regular ${styles.list_item}`}>
+                all articles
+              </li>
+            </Link>
+            <Link href="/authors">
+              <li className={`text_regular ${styles.list_item}`}>authors</li>
+            </Link>
+            <Link href="/cookbook">
+              <li className={`text_regular ${styles.list_item}`}>cook book</li>
+            </Link>
           </ul>
         </div>
         <div className={styles.col}>
@@ -23,9 +31,25 @@ const Navbar = () => {
         </div>
         <div className={styles.col}>
           <ul className={styles.list}>
-            {colTwo.map((item, indx) => (
-              <ListItem item={item} key={indx} />
-            ))}
+            {user ? (
+              <Link href="/profile">
+                <li className={`text_regular ${styles.list_item}`}>
+                  my account
+                </li>
+              </Link>
+            ) : (
+              <Link href="/account">
+                <li className={`text_regular ${styles.list_item}`}>
+                  my account
+                </li>
+              </Link>
+            )}
+            <Link href="/publish">
+              <li className={`text_regular ${styles.list_item}`}>publish</li>
+            </Link>
+            <Link href="/promotions">
+              <li className={`text_regular ${styles.list_item}`}>promotions</li>
+            </Link>
           </ul>
         </div>
       </div>
