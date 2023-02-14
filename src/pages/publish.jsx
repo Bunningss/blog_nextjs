@@ -89,7 +89,7 @@ const Publish = () => {
                 placeholder: "Enter Article",
                 required: true,
                 errorMessage: "Article Description is required",
-                type: "TEXTAREA",
+                fieldType: "TEXTAREA",
               }}
               handleChange={handleChange}
             />

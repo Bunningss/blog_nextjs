@@ -33,7 +33,7 @@ const Featured = () => {
         </div>
         <div className={styles.col}>
           <Link
-            href="/allposts"
+            href="/allarticles"
             className={`text_regular ${styles.featured_text}`}
           >
             show me everything

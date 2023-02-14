@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema(
     },
     IsAuthor: {
       type: Boolean,
-      default: false,
-      required: false,
+      default: true,
+      required: true,
       enum: [true, false],
     },
     Articles: {

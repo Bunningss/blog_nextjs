@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "@/lib/requestMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import {
-  loginStart,
-  loginFailure,
-  loginSuccess,
-  registerStart,
-} from "@/Redux/userSlice";
+import { loginStart, loginFailure, loginSuccess } from "@/Redux/userSlice";
 import FormInput from "@/Components/FormInput";
 import PrimayButton from "@/Components/PrimayButton";
 
@@ -117,13 +112,10 @@ const Account = () => {
     if (values.Password !== values.ConfirmPassword) {
       return;
     }
-    dispatch(registerStart());
     try {
       await publicRequest.post("/auth/register", values);
-      dispatch(loginSuccess());
       setSuccessMessage("Registration successful. Please log in.");
     } catch (error) {
-      dispatch(loginFailure());
       setRegisterError(error.response.data.data);
     }
   };

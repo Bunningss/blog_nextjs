@@ -3,14 +3,14 @@ import { useState } from "react";
 
 const FormInput = ({ input, handleChange }) => {
   const [focused, setFocused] = useState(false);
-  const { type, errorMessage, label, ...others } = input;
+  const { fieldType, errorMessage, label, ...others } = input;
 
   return (
     <div className={styles.input_group}>
       <label htmlFor="" className={`text_regular`}>
         {label}
       </label>
-      {type === "TEXTAREA" ? (
+      {fieldType === "TEXTAREA" ? (
         <textarea
           className={`input ${styles.form_input}`}
           {...others}

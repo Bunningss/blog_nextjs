@@ -1,4 +1,4 @@
-import styles from "../styles/AllPosts.module.css";
+import styles from "../styles/AllArticles.module.css";
 import Head from "next/head";
 import Post from "@/Components/Post";
 import { categories } from "static";
