@@ -1,5 +1,4 @@
 import styles from "../styles/Publish.module.css";
-import { useState } from "react";
 import Head from "next/head";
 import FormInput from "@/Components/FormInput";
 import PrimayButton from "@/Components/PrimayButton";
@@ -15,7 +14,7 @@ const Publish = () => {
       </Head>
       <main className={`default ${styles.publish}`}>
         <div className={styles.wrapper}>
-          <form onSubmit={handleSubmit} className={styles.publish_form}>
+          <form className={styles.publish_form}>
             <div className={styles.group}>
               <label htmlFor="media" className={styles.publish_label}>
                 Choose Media
@@ -25,7 +24,6 @@ const Publish = () => {
                 name="Image"
                 className={`input ${styles.publish_input}`}
                 required
-                onChange={(e) => setFile(e.target.files[0])}
               />
             </div>
             <FormInput

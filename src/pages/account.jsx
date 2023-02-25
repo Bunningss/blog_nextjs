@@ -91,26 +91,19 @@ const Account = () => {
         <div className={styles.wrapper}>
           <div className={styles.col}>
             <h2 className={`header ${styles.account_header}`}>Login</h2>
-            <form onSubmit={handleLogin} className={styles.account_form}>
+            <form className={styles.account_form}>
               {loginInputs.map((input, indx) => (
                 <FormInput key={indx} input={input} />
               ))}
-              <p className={`errorMessage`}>{errorMessage}</p>
               <PrimayButton text={"Login"} />
             </form>
           </div>
           <div className={styles.col}>
             <h2 className={`header ${styles.account_header}`}>register</h2>
-            <form onSubmit={handleRegister} className={styles.account_form}>
+            <form className={styles.account_form}>
               {registerInputs.map((input, indx) => (
-                <FormInput
-                  key={indx}
-                  input={input}
-                  handleChange={handleRegisterInputs}
-                />
+                <FormInput key={indx} input={input} />
               ))}
-              <p className={`errorMessage`}>{registerError}</p>
-              <p className={`successMessage`}>{successMessage}</p>
               <PrimayButton text={"Register"} />
             </form>
           </div>

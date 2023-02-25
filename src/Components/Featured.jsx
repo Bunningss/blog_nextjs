@@ -2,7 +2,7 @@ import styles from "@/styles/Featured.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../public/Images/icons/arrow.png";
-import Post from "./Post";
+import Post from "./ArticleCard";
 import { temPosts } from "static";
 
 const Featured = () => {

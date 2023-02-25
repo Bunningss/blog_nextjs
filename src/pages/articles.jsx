@@ -1,9 +1,9 @@
-import styles from "../styles/AllArticles.module.css";
+import styles from "@/styles/Articles.module.css";
 import Head from "next/head";
-import Post from "@/Components/Post";
-import { categories } from "static";
+import Post from "@/Components/ArticleCard";
+import { categories, temPosts } from "static";
 
-const Allarticles = () => {
+const Articles = () => {
   return (
     <>
       <Head>
@@ -58,7 +58,7 @@ const Allarticles = () => {
           </div>
           {/* All Posts */}
           <div className={styles.col}>
-            {articles.map((post, indx) => (
+            {temPosts.map((post, indx) => (
               <Post key={indx} post={post} />
             ))}
           </div>
@@ -68,4 +68,4 @@ const Allarticles = () => {
   );
 };
 
-export default Allarticles;
+export default Articles;

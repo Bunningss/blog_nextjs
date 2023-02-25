@@ -1,4 +1,4 @@
-.post {
+.article_card {
   height: 500px;
   background-color: var(--content-bg);
   border-radius: 3px;
@@ -6,21 +6,21 @@
   transition: all 0.3s ease;
 }
 
-.post:hover {
+.article_card:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.post .image_container {
+.article_card .image_container {
   position: relative;
   height: 90%;
   width: 100%;
 }
 
-.post .post_image {
+.article_card .article_card_image {
   object-fit: cover;
 }
 
-.post .post_title {
+.article_card .article_card_title {
   text-align: center;
   text-transform: capitalize;
   color: var(--primary);

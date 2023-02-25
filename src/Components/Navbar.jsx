@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className={styles.wrapper}>
         <div className={styles.col}>
           <ul className={styles.list}>
-            <Link href="/allarticles">
+            <Link href="/articles">
               <li className={`text_regular ${styles.list_item}`}>
                 all articles
               </li>
