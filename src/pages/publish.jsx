@@ -1,53 +1,10 @@
 import styles from "../styles/Publish.module.css";
-import { useEffect, useState } from "react";
-import { uploadFile } from "@/lib/firebaseUpload";
-import { publicRequest } from "@/lib/requestMethods";
+import { useState } from "react";
 import Head from "next/head";
 import FormInput from "@/Components/FormInput";
 import PrimayButton from "@/Components/PrimayButton";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 
 const Publish = () => {
-  const [values, setValues] = useState({
-    Title: "",
-    Category: "",
-    Article: "",
-  });
-  const [file, setFile] = useState("");
-  const user = useSelector((state) => state.loggedIn);
-  const router = useRouter();
-  const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-  const finishTask = async (url, downloadURL, values) => {
-    try {
-      await publicRequest.post(`${url}`, {
-        Image: downloadURL,
-        ...values,
-      });
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const url = "/article";
-    try {
-      uploadFile(file, values, url, finishTask);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (!user) {
-      router.push("/account");
-    }
-  }, [user]);
-
   return (
     <>
       <Head>
@@ -79,7 +36,6 @@ const Publish = () => {
                 required: true,
                 label: "Enter a title",
               }}
-              handleChange={handleChange}
             />
             <FormInput
               input={{
@@ -91,7 +47,6 @@ const Publish = () => {
                 errorMessage: "Article Description is required",
                 fieldType: "TEXTAREA",
               }}
-              handleChange={handleChange}
             />
             <div className={styles.group}>
               <label htmlFor="Category" className={styles.publish_label}>
@@ -102,7 +57,6 @@ const Publish = () => {
                 id="category"
                 className={`input ${styles.publish_input}`}
                 required
-                onChange={handleChange}
               >
                 <option value="">category</option>
                 <option value="lifestyle">lifestyle</option>

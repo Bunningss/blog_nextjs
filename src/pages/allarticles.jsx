@@ -2,23 +2,8 @@ import styles from "../styles/AllArticles.module.css";
 import Head from "next/head";
 import Post from "@/Components/Post";
 import { categories } from "static";
-import { useEffect, useState } from "react";
-import { publicRequest } from "@/lib/requestMethods";
 
 const Allarticles = () => {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    const getArticles = async () => {
-      try {
-        const res = await publicRequest.get("/article");
-        setArticles(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getArticles();
-  }, []);
   return (
     <>
       <Head>

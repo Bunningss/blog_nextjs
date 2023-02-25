@@ -8,7 +8,7 @@ const Post = ({ post }) => {
       <Link href={`/post/${post._id}`}>
         <div className={styles.image_container}>
           <Image
-            src={post.Image}
+            src={post.image}
             alt=""
             className={styles.post_image}
             fill

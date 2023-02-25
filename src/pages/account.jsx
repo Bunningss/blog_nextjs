@@ -1,16 +1,10 @@
 import styles from "../styles/Account.module.css";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { publicRequest } from "@/lib/requestMethods";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { loginStart, loginFailure, loginSuccess } from "@/Redux/userSlice";
+import { useState } from "react";
 import FormInput from "@/Components/FormInput";
 import PrimayButton from "@/Components/PrimayButton";
 
 const Account = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [registerError, setRegisterError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [values, setValues] = useState({
     Name: "",
@@ -18,9 +12,6 @@ const Account = () => {
     Password: "",
     ConfirmPassword: "",
   });
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const user = useSelector((state) => state.loggedIn);
   const registerInputs = [
     {
       label: "Name",
@@ -88,44 +79,6 @@ const Account = () => {
     },
   ];
 
-  const handleRegisterInputs = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const loginData = Object.fromEntries(data.entries());
-    dispatch(loginStart());
-    try {
-      const res = await publicRequest.post("/auth/login", loginData);
-      dispatch(loginSuccess(res.data.data));
-      // router.push("/");
-    } catch (error) {
-      dispatch(loginFailure());
-      console.log(error.response.data.data);
-    }
-  };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (values.Password !== values.ConfirmPassword) {
-      return;
-    }
-    try {
-      await publicRequest.post("/auth/register", values);
-      setSuccessMessage("Registration successful. Please log in.");
-    } catch (error) {
-      setRegisterError(error.response.data.data);
-    }
-  };
-
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user]);
-
   return (
     <>
       <Head>
@@ -156,10 +109,6 @@ const Account = () => {
                   handleChange={handleRegisterInputs}
                 />
               ))}
-              {/* <select name="" id="" className={`input`}>
-                <option value="">Yes</option>
-                <option value="">No</option>
-              </select> */}
               <p className={`errorMessage`}>{registerError}</p>
               <p className={`successMessage`}>{successMessage}</p>
               <PrimayButton text={"Register"} />

@@ -2,10 +2,8 @@ import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import logo from "@/../public/Images/logo.png";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.loggedIn);
   return (
     <nav className={`default ${styles.navbar}`}>
       <div className={styles.wrapper}>
@@ -31,19 +29,9 @@ const Navbar = () => {
         </div>
         <div className={styles.col}>
           <ul className={styles.list}>
-            {user ? (
-              <Link href="/profile">
-                <li className={`text_regular ${styles.list_item}`}>
-                  my account
-                </li>
-              </Link>
-            ) : (
-              <Link href="/account">
-                <li className={`text_regular ${styles.list_item}`}>
-                  my account
-                </li>
-              </Link>
-            )}
+            <Link href="/account">
+              <li className={`text_regular ${styles.list_item}`}>my account</li>
+            </Link>
             <Link href="/publish">
               <li className={`text_regular ${styles.list_item}`}>publish</li>
             </Link>
